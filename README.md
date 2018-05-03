@@ -1,6 +1,26 @@
 # CarND-Controls-MPC
 Self-Driving Car Engineer Nanodegree Program
 
+## Discussion
+### The Model
+The model takes the actual state from the simulation (vehicle's coordinates, orientation angle, cross-track error and psi error) and calculates the next state. It uses the equations that are also used in the MPC-Quizzes Project. The only modification on these equations was to change the psi update equation from
+```
+psi0 + v0 * delta0 / Lf * dt
+```
+to
+```
+psi0 - v0 * delta0 / Lf * dt
+```
+. With a positive delta we turn left but in the simulation a positiv delta leads to a right turn.
+
+### Timesteop Length and Elapsed Duration (N & dt)
+The values for the timestep length and the elapsed duration are 10 and 0.1. I tried also other values (20/0.05, 5/0.2) but these were the best values I got for this project.
+
+### Polynomial Fitting and MPC Preprocessing
+The waypoints are preprocessed by transforming them from the simulator global coordinate system into the vehicle coordinate system. (main.cpp - lines 103-112)
+
+### Model Predictive Control with Latency
+I predict the vehicle state after a latency of 0.1 seconds and put this state into the MPC. So the controller does not react on an old state. (main.cpp - lines 123-128)
 ---
 
 ## Dependencies

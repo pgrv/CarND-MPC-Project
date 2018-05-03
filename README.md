@@ -21,6 +21,7 @@ The waypoints are preprocessed by transforming them from the simulator global co
 
 ### Model Predictive Control with Latency
 I predict the vehicle state after a latency of 0.1 seconds and put this state into the MPC. So the controller does not react on an old state. (main.cpp - lines 123-128)
+
 ---
 
 ## Dependencies
